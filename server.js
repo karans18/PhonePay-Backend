@@ -5,7 +5,8 @@ const connectDB = require("./src/config/config");
 const cors = require("cors");
 const app = express();
 const authRoutes = require("./src/routes/authRoutes");
-
+const transactionRoutes = require("./src/routes/transactionRoutes");
+const walletRoutes = require("./src/routes/walletRoutes");
 let swaggerDocument = {};
 try {
   swaggerDocument = require("./swagger-output.json");
@@ -27,6 +28,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/transactions", transactionRoutes);
+app.use("/api/wallet", walletRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
